@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ProjetCegep
+namespace ProjetCegep.vues
 {
    public partial class FormGestionCegep : Form
    {
