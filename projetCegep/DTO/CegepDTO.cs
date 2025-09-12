@@ -1,4 +1,4 @@
-namespace ProjetCegep
+namespace ProjetCegep.DTO
 {
     public class CegepDTO
     {
@@ -25,15 +25,15 @@ namespace ProjetCegep
         }
 
         //Constructeur a partir d'un objet cegep
-        public CegepDTO(Cegep leCegep)
+        public CegepDTO(Cegep monCegep)
         {
-            Nom = leCegep.Nom;
-            Adresse = leCegep.Adresse;
-            Ville = leCegep.Ville;
-            Province = leCegep.Province;
-            CodePostal = leCegep.CodePostal;
-            Telephone = leCegep.Telephone;
-            Courriel = leCegep.Courriel;
+            Nom = monCegep.Nom;
+            Adresse = monCegep.Adresse;
+            Ville = monCegep.Ville;
+            Province = monCegep.Province;
+            CodePostal = monCegep.CodePostal;
+            Telephone = monCegep.Telephone;
+            Courriel = monCegep.Courriel;
         }
 
         public override string ToString()
