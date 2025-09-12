@@ -1,5 +1,5 @@
 ﻿
-namespace ProjetCegep
+namespace ProjetCegep.vues
 {
    partial class FormGestionCegep
    {

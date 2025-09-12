@@ -3,30 +3,30 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ProjetCegep
+namespace ProjetCegep.vues
 {
    public partial class FormGestionCegep : Form
    {
-        Cegep monCegep;  //Objet Cégep qui comprend la structure complète d'un cégep...
+        //Cegep monCegep;  //Objet Cégep qui comprend la structure complète d'un cégep...
 
         /// <summary>
         /// Constructeur du formulaire Gestion Cégep
         /// </summary>
         public FormGestionCegep()
         {
-            InitializeComponent();
-            if (File.Exists("Cegep.xml"))
-            {
-                XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
-                FileStream fichierLogique;
+            //InitializeComponent();
+           // if (File.Exists("Cegep.xml"))
+           // {
+          //      XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
+         //       FileStream fichierLogique;
 
-                fichierLogique = File.OpenRead("Cegep.xml");
-                monCegep = (Cegep)leFichierCegep.Deserialize(fichierLogique);
-                fichierLogique.Close();
+         //       fichierLogique = File.OpenRead("Cegep.xml");
+         //       monCegep = (Cegep)leFichierCegep.Deserialize(fichierLogique);
+         //       fichierLogique.Close();
 
-                RemplirListes();
-            }
-        }
+         //       RemplirListes();
+     //       }
+       }
 
         /// <summary>
         /// Méthode qui permet d'enregistrer le cégep et les listes dans un fichier XML.  Par la suite, on quitte l'application 
@@ -35,18 +35,18 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists("Cegep.xml"))
-            {
-                File.Delete("Cegep.xml");
-            }
-            XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
-            FileStream fichierLogique;
+       //     if (File.Exists("Cegep.xml"))
+       //     {
+        //        File.Delete("Cegep.xml");
+       //     }
+       //     XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
+       //     FileStream fichierLogique;
 
-            using (fichierLogique = File.OpenWrite("Cegep.xml"))
-            {
-                leFichierCegep.Serialize(fichierLogique, monCegep);
-            }
-            Application.Exit();
+       //     using (fichierLogique = File.OpenWrite("Cegep.xml"))
+       //     {
+       //         leFichierCegep.Serialize(fichierLogique, monCegep);
+       //     }
+       //     Application.Exit();
         }
 
         /// <summary>
@@ -54,16 +54,16 @@ namespace ProjetCegep
         /// </summary>
         public void RemplirListes()
         {
-             lbxDepartement.Items.Clear();
-             lbxDepartementInfoCegep.Items.Clear();
-             cbxDepartementEnseignant.Items.Clear();
-             if (monCegep != null)
-                 foreach (Departement departement in monCegep.ObtenirListeDepartement())
-                 {
-                    lbxDepartement.Items.Add(departement.ToString());
-                    lbxDepartementInfoCegep.Items.Add(departement.ToString());
-                    cbxDepartementEnseignant.Items.Add(departement.ToString());
-                 }
+        //     lbxDepartement.Items.Clear();
+        //     lbxDepartementInfoCegep.Items.Clear();
+        //     cbxDepartementEnseignant.Items.Clear();
+        //     if (monCegep != null)
+        //         foreach (Departement departement in monCegep.ObtenirListeDepartement())
+        //         {
+         //           lbxDepartement.Items.Add(departement.ToString());
+         //           lbxDepartementInfoCegep.Items.Add(departement.ToString());
+         //           cbxDepartementEnseignant.Items.Add(departement.ToString());
+         //        }
         }
 
         //Onglet Gestion enseignants...
@@ -88,22 +88,22 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnAjouterEnseignant_Click(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
+         //   Departement monDepartement, leDepartementAChercher;
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
+        //    leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
+         //   monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
 
-            if (monDepartement != null)
-            {
-                monDepartement.AjouterEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
+         //   if (monDepartement != null)
+         //   {
+         //       monDepartement.AjouterEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
 
-                AfficherListeEnseignantGestionEnseignant(monDepartement);
-            }
-            else
-            {
-                MessageBox.Show("Erreur dans la sélection du département.");
-            }
+         //       AfficherListeEnseignantGestionEnseignant(monDepartement);
+         //   }
+         //   else
+         //   {
+         //       MessageBox.Show("Erreur dans la sélection du département.");
+         //   }
         }
 
         /// <summary>
@@ -113,13 +113,13 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void CbxDepartementEnseignant_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
+          //  Departement monDepartement, leDepartementAChercher;
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
+          //  leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
+          //  monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
 
-            AfficherListeEnseignantGestionEnseignant(monDepartement);
+         //   AfficherListeEnseignantGestionEnseignant(monDepartement);
         }
 
 
@@ -130,32 +130,32 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnModifierEnseignant_Click(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
-            Enseignant unEnseignant;
+         //   Departement monDepartement, leDepartementAChercher;
+        //    Enseignant unEnseignant;
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
+         //   leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
+          //  monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
 
-            if (monDepartement != null)
-            {
-                unEnseignant = monDepartement.ObtenirEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
+          //  if (monDepartement != null)
+        //    {
+         //       unEnseignant = monDepartement.ObtenirEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
 
-                unEnseignant.NoEmploye = int.Parse(edtNoEmploye.Text);
-                unEnseignant.Prenom = edtPrenomEnseignant.Text;
-                unEnseignant.Adresse = edtAdresseEnseignant.Text;
-                unEnseignant.Ville = edtVilleEnseignant.Text;
-                unEnseignant.Province = EdtProvinceEnseignant.Text;
-                unEnseignant.CodePostal = edtCodePostalEnseignant.Text;
-                unEnseignant.Telephone = edtTelephoneEnseignant.Text;
-                unEnseignant.Courriel = edtCourrielEnseignant.Text;
+         //       unEnseignant.NoEmploye = int.Parse(edtNoEmploye.Text);
+         //       unEnseignant.Prenom = edtPrenomEnseignant.Text;
+         //       unEnseignant.Adresse = edtAdresseEnseignant.Text;
+          //      unEnseignant.Ville = edtVilleEnseignant.Text;
+         //       unEnseignant.Province = EdtProvinceEnseignant.Text;
+         //       unEnseignant.CodePostal = edtCodePostalEnseignant.Text;
+         //       unEnseignant.Telephone = edtTelephoneEnseignant.Text;
+         //       unEnseignant.Courriel = edtCourrielEnseignant.Text;
 
-                AfficherListeEnseignantGestionEnseignant(monDepartement);
-            }
-            else
-            {
-                MessageBox.Show("Erreur dans la sélection du département.");
-            }
+          //      AfficherListeEnseignantGestionEnseignant(monDepartement);
+         //   }
+        //    else
+        //    {
+        //        MessageBox.Show("Erreur dans la sélection du département.");
+        //    }
         }
 
         /// <summary>
@@ -165,22 +165,22 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnSupprimerEnseignant_Click(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
+         //   Departement monDepartement, leDepartementAChercher;
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
+         //   leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
+        //    monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
 
-            if (monDepartement != null)
-            {
-                monDepartement.EnleverEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
-                MessageBox.Show("L'enseignant " + edtNoEmploye.Text + " à été supprimé !!!");
-                AfficherListeEnseignantGestionEnseignant(monDepartement);
-            }
-            else
-            {
-                MessageBox.Show("Erreur dans la sélection du département.");
-            }
+         //   if (monDepartement != null)
+          //  {
+          //      monDepartement.EnleverEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
+          //      MessageBox.Show("L'enseignant " + edtNoEmploye.Text + " à été supprimé !!!");
+          //      AfficherListeEnseignantGestionEnseignant(monDepartement);
+           // }
+           // else
+           // {
+           //     MessageBox.Show("Erreur dans la sélection du département.");
+           // }
         }
 
         //Onglet Gestion départements
@@ -192,20 +192,20 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnAjouterDepartement_Click(object sender, EventArgs e)
         {
-            Departement unDepartement;
+        //    Departement unDepartement;
 
-            unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
+         //   unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
 
-            if (monCegep.AjouterDepartement(unDepartement))
-            {
-                RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été crée.");
-            }
-            else
-            {
-                MessageBox.Show("Le département existe déjà et n'a pas été crée.");
-            }
-            Refresh();
+         //   if (monCegep.AjouterDepartement(unDepartement))
+         //   {
+         //       RemplirListes();
+         //       MessageBox.Show(unDepartement.ToString() + "\na bien été crée.");
+         //   }
+         //   else
+         //   {
+         //       MessageBox.Show("Le département existe déjà et n'a pas été crée.");
+         //   }
+         //   Refresh();
         }
 
         /// <summary>
@@ -215,20 +215,20 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnSupprimerGestionDepartement_Click(object sender, EventArgs e)
         {
-            Departement unDepartement;
+         //   Departement unDepartement;
 
-            unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
+         //   unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
 
-            if (monCegep.EnleverDepartement(unDepartement))
-            {
-                RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été enlevé.");
-            }
-            else
-            {
-                MessageBox.Show("Le département entré n'est pas dans la liste et n'a pas pu être enlevé.");
-            }
-            Refresh();
+         //   if (monCegep.EnleverDepartement(unDepartement))
+         //   {
+          //      RemplirListes();
+          //      MessageBox.Show(unDepartement.ToString() + "\na bien été enlevé.");
+          //  }
+          //  else
+         //   {
+         //       MessageBox.Show("Le département entré n'est pas dans la liste et n'a pas pu être enlevé.");
+          //  }
+         //   Refresh();
         }
 
         //Onglet Info Cégep
@@ -240,7 +240,7 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnAjouterCegep_Click(object sender, EventArgs e)
         {
-            monCegep = new Cegep(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text);
+            CegepControleur.Instance.CreerCegep(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text);
             MessageBox.Show(monCegep.ToString() + "\n a bien été crée.");
         }
 
@@ -251,15 +251,15 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnModifierCegep_Click(object sender, EventArgs e)
         {
-            monCegep.Nom = edtNomCegep.Text;
-            monCegep.Adresse = edtAdresseCegep.Text;
-            monCegep.Ville = edtVilleCegep.Text;
-            monCegep.Province = edtProvinceCegep.Text;
-            monCegep.CodePostal = edtCodePostalCegep.Text;
-            monCegep.Telephone = edtTelephoneCegep.Text;
-            monCegep.Courriel = edtCourrielCegep.Text;
+         //   monCegep.Nom = edtNomCegep.Text;
+         //   monCegep.Adresse = edtAdresseCegep.Text;
+         //   monCegep.Ville = edtVilleCegep.Text;
+          //  monCegep.Province = edtProvinceCegep.Text;
+          //  monCegep.CodePostal = edtCodePostalCegep.Text;
+          //  monCegep.Telephone = edtTelephoneCegep.Text;
+          //  monCegep.Courriel = edtCourrielCegep.Text;
 
-            MessageBox.Show(monCegep.ToString() + "\na bien été modifié.");
+         //   MessageBox.Show(monCegep.ToString() + "\na bien été modifié.");
         }
 
         /// <summary>
@@ -269,12 +269,12 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnSupprimerCegep_Click(object sender, EventArgs e)
         {
-            string nomCegep;
-            nomCegep = monCegep.Nom;
+        //    string nomCegep;
+        //    nomCegep = monCegep.Nom;
 
-            monCegep = null;
-            MessageBox.Show(nomCegep + " a bien été supprimé.");
-            RemplirListes();
+         //   monCegep = null;
+         //   MessageBox.Show(nomCegep + " a bien été supprimé.");
+         //   RemplirListes();
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void FormGestionCegep_FormClosing(object sender, FormClosingEventArgs e)
         {
-            QuitterToolStripMenuItem_Click(this, null);
+           // QuitterToolStripMenuItem_Click(this, null);
         }
     }
 }
