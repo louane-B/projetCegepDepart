@@ -16,11 +16,11 @@ namespace ProjetCegep.DTO
         }
 
         //constructeur a partir d'un objet Departement
-        public DepartementDTO(Departement monDepartement)
+        public DepartementDTO(Departement leDepartement)
         {
-            No = monDepartement.No;
-            Nom = monDepartement.Nom;
-            Description = monDepartement.Description;
+            No = leDepartement.No;
+            Nom = leDepartement.Nom;
+            Description = leDepartement.Description;
         }
 
         public override string ToString()

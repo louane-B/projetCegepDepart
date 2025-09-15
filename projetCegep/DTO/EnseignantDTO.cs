@@ -31,19 +31,19 @@ namespace ProjetCegep.DTO
         }
 
         //Constructeur a partir d'un objet Enseignant
-        public EnseignantDTO(Enseignant monEnseignant)
+        public EnseignantDTO(Enseignant Lenseignant)
         {
-            NoEmploye = monEnseignant.NoEmploye;
-            Nom = monEnseignant.Nom;
-            Prenom = monEnseignant.Prenom;
-            Adresse = monEnseignant.Adresse;
-            Ville = monEnseignant.Ville;
-            Province = monEnseignant.Province;
-            CodePostal = monEnseignant.CodePostal;
-            Telephone = monEnseignant.Telephone;
-            Courriel = monEnseignant.Courriel;
-            DateEmbauche = monEnseignant.DateEmbauche;
-            DateArret = monEnseignant.DateArret;
+            NoEmploye = Lenseignant.NoEmploye;
+            Nom = Lenseignant.Nom;
+            Prenom = Lenseignant.Prenom;
+            Adresse = Lenseignant.Adresse;
+            Ville = Lenseignant.Ville;
+            Province = Lenseignant.Province;
+            CodePostal = Lenseignant.CodePostal;
+            Telephone = Lenseignant.Telephone;
+            Courriel = Lenseignant.Courriel;
+            DateEmbauche = Lenseignant.DateEmbauche;
+            DateArret = Lenseignant.DateArret;
         }
 
         public override string ToString()
